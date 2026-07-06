@@ -1,1 +1,0 @@
-eu criei o microservicopagamento2 pra usar o springboot mas nao deletei isso aqui pra nao deletar nada que pode ser util dps, nao usa esse mais
