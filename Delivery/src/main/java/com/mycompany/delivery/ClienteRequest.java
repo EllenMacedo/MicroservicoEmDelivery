@@ -10,6 +10,11 @@ package com.mycompany.delivery;
  * @author Rafael
  */
 
+import java.util.List;
+
 public record ClienteRequest(
-        String nome, String tipo, double fidelidade, String logradouro, String bairro, String cidade) {
+        String nome, String tipo, double fidelidade, String logradouro, String bairro, String cidade,
+        List<ItemRequest> itens) {
+
+    public record ItemRequest(String nome, int quantidade, double valorUnitario, String tipo) {}
 }
