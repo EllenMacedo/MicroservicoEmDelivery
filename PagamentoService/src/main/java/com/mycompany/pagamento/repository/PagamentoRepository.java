@@ -23,4 +23,5 @@ public class PagamentoRepository {
     public void deletar(String idTransacao) {
         banco.remove(idTransacao);
     }
+    boolean existePorIdTransacao(String idTransacao);
 }
