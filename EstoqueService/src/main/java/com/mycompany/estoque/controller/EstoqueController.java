@@ -4,7 +4,6 @@ import com.mycompany.estoque.dto.ProdutoResponse;
 import com.mycompany.estoque.dto.ReservaRequest;
 import com.mycompany.estoque.dto.ReservaResponse;
 import com.mycompany.estoque.service.EstoqueService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,15 +27,5 @@ public class EstoqueController {
     public ResponseEntity<ReservaResponse> reservar(@RequestBody ReservaRequest request) {
         service.reservarItens(request.itens());
         return ResponseEntity.ok(new ReservaResponse(true, "Estoque reservado com sucesso"));
-    }
-
-    @ExceptionHandler(EstoqueService.EstoqueInsuficienteException.class)
-    public ResponseEntity<ReservaResponse> tratarEstoqueInsuficiente(EstoqueService.EstoqueInsuficienteException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ReservaResponse(false, ex.getMessage()));
-    }
-
-    @ExceptionHandler(EstoqueService.ProdutoNaoEncontradoException.class)
-    public ResponseEntity<ReservaResponse> tratarProdutoNaoEncontrado(EstoqueService.ProdutoNaoEncontradoException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ReservaResponse(false, ex.getMessage()));
     }
 }
