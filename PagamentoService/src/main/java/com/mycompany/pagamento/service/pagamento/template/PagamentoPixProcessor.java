@@ -1,6 +1,7 @@
 package com.mycompany.pagamento.service.pagamento.template;
 
 import com.mycompany.pagamento.domain.Pagamento;
+import com.mycompany.pagamento.domain.EstadoPagamento;
 import com.mycompany.pagamento.domain.estadossolidos.EstadoAprovado;
 import com.mycompany.pagamento.dto.MetodoPagamento;
 import com.mycompany.pagamento.service.pagamento.strategy.MetodoPagamentoStrategy;
@@ -14,7 +15,9 @@ public class PagamentoPixProcessor extends ProcessadorPagamentoTemplate implemen
     @Override
     protected Pagamento executarPagamento(BigDecimal valor, String idTransacao) {
         Pagamento pagamento = new Pagamento(valor, idTransacao);
-        pagamento.setEstadoPagamento(new EstadoAprovado(pagamento)); // PIX é instantâneo
+        //pagamento.setEstadoPagamento(new EstadoAprovado(pagamento)); // PIX é instantâneo
+        pagamento.getEstadoPagamento().setEstadoProcessando();
+        pagamento.getEstadoPagamento().setEstadoAprovado();
         return pagamento;
     }
 

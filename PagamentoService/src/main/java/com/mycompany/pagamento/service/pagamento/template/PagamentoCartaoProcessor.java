@@ -1,6 +1,7 @@
 package com.mycompany.pagamento.service.pagamento.template;
 
 import com.mycompany.pagamento.domain.Pagamento;
+import com.mycompany.pagamento.domain.EstadoPagamento;
 import com.mycompany.pagamento.domain.estadossolidos.EstadoProcessando;
 import com.mycompany.pagamento.dto.MetodoPagamento;
 import com.mycompany.pagamento.service.pagamento.strategy.MetodoPagamentoStrategy;
@@ -14,7 +15,8 @@ public class PagamentoCartaoProcessor extends ProcessadorPagamentoTemplate imple
     @Override
     protected Pagamento executarPagamento(BigDecimal valor, String idTransacao) {
         Pagamento pagamento = new Pagamento(valor, idTransacao);
-        pagamento.setEstadoPagamento(new EstadoProcessando(pagamento)); // cartão pode demorar
+        //pagamento.setEstadoPagamento(new EstadoProcessando(pagamento)); // cartão pode demorar
+        pagamento.getEstadoPagamento().setEstadoProcessando();
         return pagamento;
     }
 
